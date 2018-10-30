@@ -4,27 +4,37 @@
 		<meta charset="utf-8">
 		<title>Phrase Hunter</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- CSS -->
 		<link href="css/styles.css" rel="stylesheet">
 		<link href="css/animate.css" rel="stylesheet">
+
+		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	</head>
 
 	<body>
+		<!-- Main Container -->
 		<div class="main-container">
+
+			<!-- Start -->
 			<div id="overlay" class="start">
 				<h2 class="title">Phrase Hunter</h2>
 				<h1 id = "game-over-message"></h1>
 				<button id ="btn__reset">Start Game</button>
 			</div>
 
+			<!-- Banner -->
 			<div id="banner" class="section">
 				<h2 class="header">Phrase Hunter</h2>
 			</div>
 
+			<!-- Phrase -->
 			<div id="phrase" class="section">
 				<ul></ul>
 			</div>
 
+			<!-- Keyboard -->
 			<div id="qwerty" class="section">
 				<div class="keyrow">
 					<button class = "key">q</button>
@@ -60,8 +70,9 @@
 					<button class = "key">n</button>
 					<button class = "key">m</button>
 				</div>
-			</div>
+			</div><!-- End keyboard -->
 
+			<!-- Scoreboard -->
 			<div id="scoreboard" class="section">
 				<ol>
 					<li class="tries"><img src="images/liveHeart.png" height="35px" widght="30px"></li>
@@ -70,8 +81,12 @@
 					<li class="tries"><img src="images/liveHeart.png" height="35px" widght="30px"></li>
 					<li class="tries"><img src="images/liveHeart.png" height="35px" widght="30px"></li>
 				</ol>
-			</div>
-		</div>
+			</div><!-- End scoreboard -->
+		</div><!-- End main container -->
 
+	<!-- JS -->
+	<script src="js/Phrase.js"></script>
+	<script src="js/Game.js"></script>
+	<script src="js/app.js"></script>
 	</body>
 </html>
