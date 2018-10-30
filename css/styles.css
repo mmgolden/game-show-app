@@ -1,4 +1,4 @@
-/* Main styles */
+/************************* General *************************/
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
 
 /* Variables */
@@ -10,7 +10,9 @@
   --color-neutral: #445069;
   --color-neutral-light: #D2D2D2;
   --color-keys: #37474F;
+  --color-keys-disabled: #758b96;
   --color-keys-light: #E5E5E5;
+  --color-keys-light-disabled: #f8f8f8;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -46,20 +48,6 @@ h1 {
   font-size: 30px;
 }
 
-button {
-  margin: 6px;
-  border: 1px solid transparent;
-  padding: .5rem 1rem;
-  color: var(--color-keys);
-  font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
-  border-radius: 5px;
-  -webkit-transition: var(--transition);
-  -o-transition: var(--transition);
-  transition: var(--transition);
-  cursor: pointer;
-}
-
 #btn__reset {
 	width: 200px;
 	margin: 0 auto;
@@ -83,14 +71,14 @@ button {
   margin-top: 15px;
 }
 
-/* Title */
+/************************* Title *************************/
 
 .header {
   color: #3a3f58;
 }
 
 
-/* Phrase */
+/************************* Phrase *************************/
 
 .letter {
   font-size: var(--font-size-medium);
@@ -107,8 +95,6 @@ button {
   width: 15px;
 }
 
-
-
 .show {
   color: #fff;
   background-color: #4ac0d5;
@@ -123,11 +109,30 @@ button {
 }
 
 
-/* Keyboard */
+/************************* Keyboard *************************/
 
 .keyrow {
   display: flex;
   justify-content: center;
+}
+
+button {
+  margin: 6px;
+  border: 1px solid transparent;
+  padding: .5rem 1rem;
+  color: var(--color-keys);
+  font-size: var(--font-size-medium);
+  background-color: var(--color-keys-light);
+  border-radius: 5px;
+  -webkit-transition: var(--transition);
+  -o-transition: var(--transition);
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.key:disabled {
+  color: var(--color-keys-disabled);
+  background-color: var(--color-keys-light-disabled);
 }
 
 .chosen {
@@ -160,7 +165,7 @@ button {
 }
 
 
-/* Overlay */
+/************************* Overlay *************************/
 
 #overlay {
   display: flex;

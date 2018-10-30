@@ -1,28 +1,36 @@
-// Perform basic DOM selection, add event handlers, and to reset the game when it ends
-// This file creates a new instance of the Game class, adds event listeners for the onscreen keyboard and a function to display the game
-
-// This function hides the start screen overlay
-function resetDisplay() {
-
-}
-
-// This function is called when a player selects a letter
-function markButton() {
-    // It disables the button on the onscreen keyboard and calls the handleInteraction() method of the Game class
-}
-
-// Add an event listener to the "Start Game" button
+// Variables
+let game;
 const startBtn = document.getElementById('btn__reset');
+const keyboardBtns = document.getElementById('qwerty');
+
+// Hides the start screen overlay
+function resetDisplay() {
+    const overlay = document.getElementById('overlay');
+    overlay.style.display = 'none';
+}
+
+// When a player selects a letter
+function markButton(event) {
+    // Disable the button on the onscreen keyboard
+    event.target.disabled = true;
+    // Call the handleInteraction() method of the Game class
+    game.handleInteraction();
+}
+
+// When the "Start Game" button is clicked
 startBtn.addEventListener('click', function() {
-    // Calls the resetDisplay() function, creates a new Game object, and starts the game
-    const game = new Game();
+    // Call the resetDisplay() function, create a new Game object, and start the game
+    resetDisplay();
+    game = new Game();
+    game.startGame();
 });
 
-// Add event listeners to each of the keyboard buttons
-const keyboardBtns = document.getElementById('qwerty');
-keyboardBtns.addEventListener('click', function() {
-    // Clicking a button calls the markButton() function
-    // Only the keys of the onscreen keyboard should be clickable
+// When a keyboard button is clicked
+keyboardBtns.addEventListener('click', function(event) {
+    // If a button is clicked, call the markButton() function
+    if (event.target.tagName === 'BUTTON') {
+        markButton(event);
+    }
 });
 
 // Extra: Let players use the computer keyboard to enter guesses. You'll need to use the keypress event

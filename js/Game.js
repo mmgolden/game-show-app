@@ -16,6 +16,7 @@ class Game {
     handleInteraction() {
         // If it does not, then call the removeLife() method
         // If the selected letter matches, call the showMatchedLetter() method on the phrase and then call the checkForWin() method
+        console.log('handleInteraction() has been called');
     }
 
     // This method removes a life, removes a heart from the board, and, if the player is out of lives, ends the game
@@ -35,6 +36,6 @@ class Game {
 
     // Calls the getRandomPhrase() method, and adds that phrase to the board by calling the Phrase class' addPhraseToDisplay() method
     startGame() {
-        
+        console.log('The game has started');
     }
 }
