@@ -16,7 +16,7 @@ function markButton(event) {
     event.target.disabled = true;
 
     // Call the handleInteraction() method of the Game class
-    game.handleInteraction();
+    game.handleInteraction(event);
 }
 
 // When the "Start Game" button is clicked

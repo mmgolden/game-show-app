@@ -5,6 +5,20 @@ class Game {
         this.missed = 0;
         // An array of phrases to use with the game
         this.phrases = ['best of luck', 'a way of life', 'catch a wave', 'dawn to dusk', 'eat my words', 'a mixed bag', 'a new twist', 'all fired up','back in my day', 'do the hustle', 'drop the ball', 'far from over', 'fit for a king', 'seize the day','two thumbs up'];
+        // Phrase instance with random phrase to use in the game
+        this.phrase = this.createPhrase();
+    }
+
+    // Create a new instance of the Phrase class
+    createPhrase() {
+
+         // Get a random phrase
+         const randomPhrase = this.getRandomPhrase();
+
+         console.log(randomPhrase);
+
+         // Create a new instance of the Phrase class
+         return new Phrase(randomPhrase);
     }
 
     // Get a random phrase from the phrases array
@@ -13,15 +27,20 @@ class Game {
         return this.phrases[index];
     }
 
-    // This method checks to see if the button clicked by the player matches a letter in the phrase
-    handleInteraction() {
-        
-        // If the selected letter matches, call the showMatchedLetter() method on the phrase and then call the checkForWin() method
-        if (phrase.checkLetter()) {
+    // Checks to see if the button clicked by the player matches a letter in the phrase
+    handleInteraction(event) {
 
-            console.log('The letter matches');
+        // Returns true if the letter matches a letter in the phrase
+        const match = this.phrase.checkLetter(event).match;
 
-        // If it does not, then call the removeLife() method
+        // If the selected letter matches
+        if (match) {
+
+            // Call the showMatchedLetter() method on the phrase and then call the checkForWin() method
+            this.phrase.showMatchedLetter(event);
+            this.checkForWin();
+
+        // Otherwise call the removeLife() method
         } else {
             this.removeLife();
         }
@@ -29,12 +48,12 @@ class Game {
 
     // This method removes a life, removes a heart from the board, and, if the player is out of lives, ends the game
     removeLife() {
-        console.log('A life has been removed');
+        // console.log('removeLife() called');
     }
 
     // This method checks to see if the player has selected all of the letters
     checkForWin() {
-
+        // console.log('checkForWin() called');
     }
 
     // This method displays a message if the player wins or a different message if they lose
@@ -44,15 +63,7 @@ class Game {
 
     // Start the game
     startGame() {
-        console.log('The game has started');
-
-        // Get a random phrase
-        const randomPhrase = this.getRandomPhrase();
-
-        // Create a new instance of the Phrase class
-        const phrase = new Phrase(randomPhrase);
-
-        // Add the phrase to the board
-        phrase.addPhraseToDisplay();
+        // Add the random phrase to the board
+        this.phrase.addPhraseToDisplay();
     }
 }
