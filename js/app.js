@@ -11,8 +11,10 @@ function resetDisplay() {
 
 // When a player selects a letter
 function markButton(event) {
+    
     // Disable the button on the onscreen keyboard
     event.target.disabled = true;
+
     // Call the handleInteraction() method of the Game class
     game.handleInteraction();
 }
