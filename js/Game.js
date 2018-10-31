@@ -46,19 +46,44 @@ class Game {
         }
     }
 
-    // This method removes a life, removes a heart from the board, and, if the player is out of lives, ends the game
+    // Removes a life
     removeLife() {
-        // console.log('removeLife() called');
+
+        // Add 1 to the number of missed guesses
+        this.missed += 1;
+
+        // Get the DOM elements
+        const scoreboard = document.getElementById('scoreboard').firstElementChild;
+        const hearts = Array.from(document.getElementById('scoreboard').firstElementChild.children);
+        
+        // Remove one heart from the DOM
+        scoreboard.removeChild(hearts[hearts.length - 1]);
+
+        // If the player has 5 missed guesses, call gameOver()
+        if (this.missed === 5) {
+            this.gameOver();
+        }
     }
 
-    // This method checks to see if the player has selected all of the letters
+    // Checks to see if the player has selected all of the letters
     checkForWin() {
-        // console.log('checkForWin() called');
+        const boardChars = Array.from(document.getElementById('phrase').firstElementChild.children);
+
+        const boardLetters = boardChars.filter(char => char.classList.contains('letter'));
+        const shownLetters = boardChars.filter(char => char.classList.contains('show'));
+
+        if (boardLetters.length === shownLetters.length) {
+            this.gameOver();
+        }
     }
 
-    // This method displays a message if the player wins or a different message if they lose
+    // Displays a message if the player wins or a different message if they lose
     gameOver() {
-
+        if (this.missed === 5) {
+            console.log('Game over');
+        } else if (this.missed < 5) {
+            console.log('You win!');
+        }
     }
 
     // Start the game
