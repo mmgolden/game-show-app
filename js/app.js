@@ -1,5 +1,6 @@
 // Variables
 let game;
+let pressedKeys = [];
 const startBtn = document.getElementById('btn__reset');
 const keyboardBtns = document.getElementById('qwerty');
 
@@ -10,13 +11,9 @@ function resetDisplay() {
     const msg = document.getElementById('game-over-message');
     msg.textContent = '';
 
-    // Get the board
-    const board = document.getElementById('phrase');
-
-    // Get the list items on the board
-    const listItems = Array.from(document.querySelector('#phrase ul').childNodes);
-
     // Reset the board
+    const board = document.getElementById('phrase');
+    const listItems = Array.from(document.querySelector('#phrase ul').childNodes);
     if (listItems.length > 0) {
         listItems.forEach(listItem => board.firstElementChild.removeChild(listItem));
     }
@@ -26,22 +23,11 @@ function resetDisplay() {
     keys.forEach(key => key.disabled = false);
 
     // Reset the hearts
-    const scoreboard = document.getElementById('scoreboard');
-    const hearts = Array.from(document.querySelectorAll('.tries'));
-    if (hearts.length < 5) {
-        hearts.forEach(heart => scoreboard.firstElementChild.removeChild(heart));
+    const hidden = Array.from(document.querySelectorAll('.hidden'));
+    hidden.forEach(heart => heart.className = 'tries');
 
-        for (let i = 0; i < 5; i++) {
-            const li = document.createElement('li');
-            li.className = 'tries';
-            const img = document.createElement('img');
-            img.setAttribute('src', 'images/liveHeart.png');
-            img.setAttribute('height', '35px');
-            img.setAttribute('width', '35px');
-            li.appendChild(img);
-            scoreboard.firstElementChild.appendChild(li);
-        }
-    }
+    // Reset the pressedKeys array
+    pressedKeys = [];
 
     // Hide the start screen
     const overlay = document.getElementById('overlay');
@@ -71,8 +57,21 @@ function markButton(event) {
             }
         });
 
-        // Call the handleInteraction() method of the Game class
-        // game.handleInteraction(event);
+        // Add all of the pressed keys to the pressedKeys array
+        pressedKeys.push(event.keyCode);
+
+        // Only get the previous keys (not the current key)
+        const previousKeys = pressedKeys.slice(0, pressedKeys.length - 1);
+
+        // If the player presses a previous key, return false
+        if (previousKeys.indexOf(event.keyCode) > -1) {
+            event.preventDefault();
+            return false;
+
+        // Otherwise call handleInteraction()
+        } else {
+            game.handleInteraction(event);
+        } 
     }
 }
 

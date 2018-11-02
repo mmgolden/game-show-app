@@ -80,6 +80,10 @@ h1 {
 
 /************************* Phrase *************************/
 
+#phrase ul li {
+  user-select: none;
+}
+
 .letter {
   font-size: var(--font-size-medium);
   height: 65px;
@@ -210,4 +214,9 @@ button {
 
 .lose a {
   color: var(--color-lose);
+}
+
+/************************* Helper Classes *************************/
+.hidden {
+  display: none;
 }

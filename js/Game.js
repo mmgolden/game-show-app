@@ -9,25 +9,23 @@ class Game {
         this.phrase = this.createPhrase();
     }
 
-    // Create a new instance of the Phrase class
-    createPhrase() {
-
-         // Get a random phrase
-         const randomPhrase = this.getRandomPhrase();
-
-         console.log(randomPhrase);
-
-         // Create a new instance of the Phrase class
-         return new Phrase(randomPhrase);
-    }
-
     // Get a random phrase from the phrases array
     getRandomPhrase() {
         const index = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[index];
     }
 
-    // Checks to see if the button clicked by the player matches a letter in the phrase
+    // Create a new instance of the Phrase class
+    createPhrase() {
+
+        // Get a random phrase
+        const randomPhrase = this.getRandomPhrase();
+
+        // Create a new instance of the Phrase class
+        return new Phrase(randomPhrase);
+    }
+
+    // Checks to see if the letter selected by the player matches a letter in the phrase
     handleInteraction(event) {
 
         // Returns true if the letter matches a letter in the phrase
@@ -51,13 +49,10 @@ class Game {
 
         // Add 1 to the number of missed guesses
         this.missed += 1;
-
-        // Get the DOM elements
-        const scoreboard = document.getElementById('scoreboard').firstElementChild;
-        const hearts = Array.from(document.getElementById('scoreboard').firstElementChild.children);
         
-        // Remove one heart from the DOM
-        scoreboard.removeChild(hearts[hearts.length - 1]);
+        // Hide the heart
+        const hearts = Array.from(document.querySelectorAll('.tries'));
+        hearts[hearts.length - 1].className = 'hidden';
 
         // If the player has 5 missed guesses, call gameOver()
         if (this.missed === 5) {
@@ -67,16 +62,10 @@ class Game {
 
     // Checks to see if the player has selected all of the letters
     checkForWin() {
-        // Get all of the characters from the board
-        const boardChars = Array.from(document.getElementById('phrase').firstElementChild.children);
-
-        // Only get the letters from the board (filter out the spaces)
-        const boardLetters = boardChars.filter(char => char.classList.contains('letter'));
-
-        // Get the letters that have been shown on the board
-        const shownLetters = boardChars.filter(char => char.classList.contains('show'));
 
         // If there are the same number of shown letters as letters on the board, then the player wins
+        const boardLetters = Array.from(document.querySelectorAll('.letter'));
+        const shownLetters = Array.from(document.querySelectorAll('.show'));      
         if (boardLetters.length === shownLetters.length) {
             this.gameOver();
         }

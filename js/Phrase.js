@@ -38,8 +38,13 @@ class Phrase {
     // Checks to see if letter selected by player matches a letter in the phrase
     checkLetter(event) {
 
-        // Get the letter from the button that was clicked
-        const letter = event.target.textContent;
+        // Get the letter from the button or keypress
+        let letter;
+        if (event.type === 'click') {
+            letter = event.target.textContent;
+        } else if (event.type === 'keypress') {
+            letter = event.key;
+        }
         
         // Spread the phrase into individual characters
         const characters = [...this.phrase];
@@ -48,7 +53,7 @@ class Phrase {
         // Credit: https://stackoverflow.com/questions/20798477/how-to-find-index-of-all-occurrences-of-element-in-array
         const indexes = characters.reduce((indexes, char, i) => {
 
-            // If the character matches the letter from the button
+            // If the character matches the letter from the player
             if (char === letter) {
 
                 // Add the matching character index to the indexes array
@@ -72,18 +77,18 @@ class Phrase {
         // Matching indexes array from the checkLetter() method
         const indexes = this.checkLetter(event).indexes;
 
-        // An array of the letter elements from the board
-        const boardLetters = Array.from(document.getElementById('phrase').firstElementChild.children);
+        // An array of the characters from the board
+        const boardChars = Array.from(document.getElementById('phrase').firstElementChild.children);
 
-        // Loops over each letter element from the board
-        boardLetters.forEach((boardLetter, i) => {
+        // Loops over each character element from the board
+        boardChars.forEach((char, i) => {
 
             // Loops over the matching indexes array
             indexes.forEach(index => {
                 
-                // If the matching index is the same as the letter index, then change the class name to 'show letter'
+                // If the matching index is the same as the character index, then change the class name to 'show letter'
                 if (index === i) {
-                    boardLetter.classList = 'show letter';
+                    char.classList = 'show letter';
                 }
             });
         });
