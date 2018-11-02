@@ -7,7 +7,7 @@ class Phrase {
 
     // Adds letter placeholders to the display when the game starts
     addPhraseToDisplay() {
-        
+
         // Get the board
         const board = document.getElementById('phrase');
 

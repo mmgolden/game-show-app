@@ -67,22 +67,47 @@ class Game {
 
     // Checks to see if the player has selected all of the letters
     checkForWin() {
+        // Get all of the characters from the board
         const boardChars = Array.from(document.getElementById('phrase').firstElementChild.children);
 
+        // Only get the letters from the board (filter out the spaces)
         const boardLetters = boardChars.filter(char => char.classList.contains('letter'));
+
+        // Get the letters that have been shown on the board
         const shownLetters = boardChars.filter(char => char.classList.contains('show'));
 
+        // If there are the same number of shown letters as letters on the board, then the player wins
         if (boardLetters.length === shownLetters.length) {
             this.gameOver();
         }
     }
 
+    // Show success or failure screen
+    showOverlay(message) {
+        
+        // Show the overlay
+        const overlay = document.getElementById('overlay');
+        overlay.style.display = 'flex';
+
+        // Show a message
+        const msg = document.getElementById('game-over-message');
+        msg.textContent = message;
+
+        // Change the text of the button
+        const btn = document.getElementById('btn__reset');
+        btn.textContent = 'Play Again';
+    }
+
     // Displays a message if the player wins or a different message if they lose
     gameOver() {
+
+        // If the player has 5 missed guesses then the game is over
         if (this.missed === 5) {
-            console.log('Game over');
+            this.showOverlay('Game over!');
+
+        // If the player has less than 5 missed guesses then they won
         } else if (this.missed < 5) {
-            console.log('You win!');
+            this.showOverlay('You win!');
         }
     }
 
