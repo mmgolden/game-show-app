@@ -21,15 +21,29 @@
 /* main */
 
 * {
-  box-sizing: border-box;
-  font-family: 'Montserrat', sans-serif;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-family: 'Bai Jamjuree', sans-serif;
 }
 
 body {
-  justify-content: space-evenly;
-  flex-direction: column;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   height: 100vh;
+  background: #5C258D;  
+  background: -webkit-linear-gradient(to left, #4389A2, #5C258D);  
+  background: -webkit-gradient(linear, right top, left top, from(#4389A2), to(#5C258D));  
+  background: -webkit-linear-gradient(right, #4389A2, #5C258D);  
+  background: -o-linear-gradient(right, #4389A2, #5C258D);  
+  background: linear-gradient(to left, #4389A2, #5C258D); 
 }
 
 li, ol, ul {
@@ -50,13 +64,22 @@ h1 {
 
 #btn__reset {
 	width: 200px;
-	margin: 0 auto;
+  margin: 0 auto;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #fff;
 }
 
 .main-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   height: 100%;
   max-height: 900px;
   text-align: center;
@@ -76,12 +99,18 @@ h1 {
 .header {
   color: #3a3f58;
 }
+.banner-title {
+  width: 90%;
+}
 
 
 /************************* Phrase *************************/
 
 #phrase ul li {
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .letter {
@@ -89,19 +118,19 @@ h1 {
   height: 65px;
   width: 65px;
   padding: 20px 1px 0 1px;
-  margin-right: 2px;
+  margin-right: 5px;
   color: transparent;
-  background: var(--color-neutral-light);
+  border: 2px solid #fff;
   border-radius: 5px;
 }
 
 .space {
-  width: 15px;
+  width: 20px;
 }
 
 .show {
-  color: #fff;
-  background-color: #4ac0d5;
+  color: var(--color-keys);
+  background-color: #fff;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -116,8 +145,12 @@ h1 {
 /************************* Keyboard *************************/
 
 .keyrow {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 button {
@@ -126,7 +159,7 @@ button {
   padding: .5rem 1rem;
   color: var(--color-keys);
   font-size: var(--font-size-medium);
-  background-color: var(--color-keys-light);
+  background: #fff;
   border-radius: 5px;
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
@@ -134,9 +167,15 @@ button {
   cursor: pointer;
 }
 
+.key {
+  width: 50px;
+  border: 2px solid #fff;
+}
+
 .key:disabled {
-  color: var(--color-keys-disabled);
-  background-color: var(--color-keys-light-disabled);
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff;
 }
 
 .chosen {
@@ -176,11 +215,21 @@ button {
 /************************* Overlay *************************/
 
 #overlay {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: fixed;
   color: #FFFFFF;
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   top: 0;
   bottom: 0;
   left: 0;
@@ -189,11 +238,16 @@ button {
 }
 
 .title {
-  color: #FFF;
+  width: 90%;
 }
 
 .start {
-  background-color: #3a3f58;
+  background: #5C258D;  
+  background: -webkit-linear-gradient(to left, #4389A2, #5C258D);  
+  background: -webkit-gradient(linear, right top, left top, from(#4389A2), to(#5C258D));  
+  background: -webkit-linear-gradient(right, #4389A2, #5C258D);  
+  background: -o-linear-gradient(right, #4389A2, #5C258D);  
+  background: linear-gradient(to left, #4389A2, #5C258D); 
 }
 
 .start a {
@@ -219,4 +273,14 @@ button {
 /************************* Helper Classes *************************/
 .hidden {
   display: none;
+}
+
+/************************* Media Queries *************************/
+@media screen and (min-width:768px) {
+  .title {
+    width: 50%;
+  }
+  .banner-title {
+    width: 30%;
+  }
 }

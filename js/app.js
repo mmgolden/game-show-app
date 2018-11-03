@@ -93,5 +93,8 @@ keyboardBtns.addEventListener('click', function(event) {
 
 // When a key is pressed
 document.addEventListener('keypress', function(event) {
-    markButton(event);
+    // Only allow letters
+    if (event.keyCode > 96 && event.keyCode < 123) {
+        markButton(event)
+    }
 });
