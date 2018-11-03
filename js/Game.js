@@ -72,10 +72,11 @@ class Game {
     }
 
     // Show success or failure screen
-    showOverlay(message) {
+    showOverlay(message, overlayClass) {
         
         // Show the overlay
         const overlay = document.getElementById('overlay');
+        overlay.className = overlayClass;
         overlay.style.display = 'flex';
 
         // Show a message
@@ -92,11 +93,11 @@ class Game {
 
         // If the player has 5 missed guesses then the game is over
         if (this.missed === 5) {
-            this.showOverlay('Game over!');
+            this.showOverlay('Game over!', 'lose');
 
         // If the player has less than 5 missed guesses then they won
         } else if (this.missed < 5) {
-            this.showOverlay('You win!');
+            this.showOverlay('You win!', 'win');
         }
     }
 
