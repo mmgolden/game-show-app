@@ -52,7 +52,9 @@ class Game {
         
         // Hide the heart
         const hearts = Array.from(document.querySelectorAll('.tries'));
-        hearts[hearts.length - 1].className = 'hidden';
+        if (hearts.length > 0) {
+            hearts[hearts.length - 1].className = 'hidden';
+        }
 
         // If the player has 5 missed guesses, call gameOver()
         if (this.missed === 5) {

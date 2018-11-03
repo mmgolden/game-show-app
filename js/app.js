@@ -58,13 +58,13 @@ function markButton(event) {
         });
 
         // Add all of the pressed keys to the pressedKeys array
-        pressedKeys.push(event.keyCode);
+        pressedKeys.push(event.key);
 
         // Only get the previous keys (not the current key)
         const previousKeys = pressedKeys.slice(0, pressedKeys.length - 1);
 
         // If the player presses a previous key, return false
-        if (previousKeys.indexOf(event.keyCode) > -1) {
+        if (previousKeys.indexOf(event.key) > -1) {
             event.preventDefault();
             return false;
 
@@ -93,8 +93,9 @@ keyboardBtns.addEventListener('click', function(event) {
 
 // When a key is pressed
 document.addEventListener('keypress', function(event) {
-    // Only allow letters
-    if (event.keyCode > 96 && event.keyCode < 123) {
-        markButton(event)
+    // Only accept letters
+    const filter = /[a-zA-Z]+/;
+    if (filter.test(event.key) && event.key !== 'Enter') {
+        markButton(event);
     }
 });
